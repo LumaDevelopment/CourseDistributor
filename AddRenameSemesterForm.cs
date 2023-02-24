@@ -7,22 +7,22 @@ namespace CourseDistributor
     public partial class AddRenameSemesterForm : Form
     {
 
-        private MainForm mainForm;
-        private List<Semester> semesters;
-        private int semesterIndex;
+        private readonly MainForm _mainForm;
+        private readonly List<Semester> _semesters;
+        private readonly int _semesterIndex;
 
         public AddRenameSemesterForm(MainForm mainForm, int semesterIndex)
         {
             InitializeComponent();
-            this.mainForm = mainForm;
-            this.semesters = mainForm.semesters;
-            this.semesterIndex = semesterIndex;
+            this._mainForm = mainForm;
+            this._semesters = mainForm.Semesters;
+            this._semesterIndex = semesterIndex;
         }
 
         private void AddRenameSemesterForm_Load(object sender, EventArgs e)
         {
 
-            if (semesters.Count == semesterIndex)
+            if (_semesters.Count == _semesterIndex)
             {
                 this.Text = "Add Semester";
                 submitButton.Text = "Add";
@@ -30,9 +30,9 @@ namespace CourseDistributor
             {
                 this.Text = "Edit Semester";
                 submitButton.Text = "Edit";
-                semesterName.Text = semesters[semesterIndex].semesterName;
-                minCreditHours.Text = semesters[semesterIndex].minCreditHours.ToString();
-                maxCreditHours.Text = semesters[semesterIndex].maxCreditHours.ToString();
+                semesterName.Text = _semesters[_semesterIndex].semesterName;
+                minCreditHours.Text = _semesters[_semesterIndex].minCreditHours.ToString();
+                maxCreditHours.Text = _semesters[_semesterIndex].maxCreditHours.ToString();
             }
 
         }
@@ -40,34 +40,33 @@ namespace CourseDistributor
         private void submitButton_Click(object sender, EventArgs e)
         {
 
-            if (!int.TryParse(minCreditHours.Text, out int minCreditHoursForSemester)
-                || !int.TryParse(maxCreditHours.Text, out int maxCreditHoursForSemester))
+            if (!int.TryParse(minCreditHours.Text, out var minCreditHoursForSemester)
+                || !int.TryParse(maxCreditHours.Text, out var maxCreditHoursForSemester))
             {
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show("Both minimum and maximum credit hours must be integers!", "Invalid Input", buttons, MessageBoxIcon.Error);
+                MessageBox.Show("Both minimum and maximum credit hours must be integers!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(semesterIndex == semesters.Count)
+            if(_semesterIndex == _semesters.Count)
             {
-                Semester semester = new Semester(
+                var semester = new Semester(
                     semesterName.Text,
                     int.Parse(minCreditHours.Text),
                     int.Parse(maxCreditHours.Text));
-                semesters.Add(semester);
+                _semesters.Add(semester);
             } else
             {
 
-                Semester temp = semesters[semesterIndex];
+                var temp = _semesters[_semesterIndex];
                 temp.semesterName = semesterName.Text;
                 temp.minCreditHours = int.Parse(minCreditHours.Text);
                 temp.maxCreditHours = int.Parse(maxCreditHours.Text);
 
-                semesters[semesterIndex] = temp;
+                _semesters[_semesterIndex] = temp;
 
             }
 
-            mainForm.RefreshSemesterBox();
+            _mainForm.RefreshSemesterBox();
 
             this.Close();
 

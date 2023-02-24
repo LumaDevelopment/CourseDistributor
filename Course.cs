@@ -11,9 +11,9 @@ namespace CourseDistributor
         public string courseName { get; set; }
         public int creditHours { get; set; }
         public SemestersOffered semestersOffered { get; set; }
-        public List<String> prerequisites { get; set; }
+        public List<string> prerequisites { get; set; }
 
-        public Course(string courseId, string courseName, int creditHours, SemestersOffered semestersOffered, List<String> prerequisites)
+        public Course(string courseId, string courseName, int creditHours, SemestersOffered semestersOffered, List<string> prerequisites)
         {
             this.courseId = courseId;
             this.courseName = courseName;
@@ -24,13 +24,7 @@ namespace CourseDistributor
 
         public override bool Equals(object obj)
         {
-
-            if (obj == null) return false;
-
-            if (!(obj is Course)) return false;
-
-            Course c = (Course)obj;
-            return c.courseId.Equals(courseId);
+            return obj is Course c && c.courseId.Equals(courseId);
 
         }
 

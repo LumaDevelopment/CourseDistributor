@@ -8,9 +8,9 @@ namespace CourseDistributor
     public partial class MainForm : Form
     {
 
-        public Dictionary<String, Course> courses;
-        public List<Semester> semesters;
-        private UserSettings settings;
+        public Dictionary<string, Course> Courses;
+        public List<Semester> Semesters;
+        private UserSettings _settings;
 
         public MainForm()
         {
@@ -22,7 +22,7 @@ namespace CourseDistributor
 
             courseBox.Items.Clear();
 
-            foreach (String courseId in courses.Keys)
+            foreach (var courseId in Courses.Keys)
             {
                 courseBox.Items.Add(courseId);
             }
@@ -34,50 +34,50 @@ namespace CourseDistributor
 
             semesterBox.Items.Clear();
 
-            for (int i = 0; i < semesters.Count; i++)
+            foreach (var semester in Semesters)
             {
-                semesterBox.Items.Add(semesters[i]);
+                semesterBox.Items.Add(semester);
             }
 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            settings = new UserSettings();
+            _settings = new UserSettings();
 
-            if (settings.Courses != null)
+            if (_settings.Courses != null)
             {
 
-                Dictionary<String, Course> coursesFromSettings = JsonSerializer.Deserialize<Dictionary<String, Course>>(settings.Courses);
+                var coursesFromSettings = JsonSerializer.Deserialize<Dictionary<string, Course>>(_settings.Courses);
 
                 if (coursesFromSettings != null)
                 {
-                    courses = coursesFromSettings;
+                    Courses = coursesFromSettings;
                 } else
                 {
-                    courses = new Dictionary<String, Course> ();
+                    Courses = new Dictionary<string, Course> ();
                 }
 
             } else
             {
-                courses = new Dictionary<String, Course> ();
+                Courses = new Dictionary<string, Course> ();
             }
 
-            if(settings.Semesters != null)
+            if(_settings.Semesters != null)
             {
-                List<Semester> semestersFromSettings = JsonSerializer.Deserialize<List<Semester>> (settings.Semesters);
+                var semestersFromSettings = JsonSerializer.Deserialize<List<Semester>> (_settings.Semesters);
 
                 if (semestersFromSettings != null)
                 {
-                    semesters = semestersFromSettings;
+                    Semesters = semestersFromSettings;
                 } else
                 {
-                    semesters = new List<Semester>();
+                    Semesters = new List<Semester>();
                 }
 
             } else
             {
-                semesters = new List<Semester> ();
+                Semesters = new List<Semester> ();
             }
 
             RefreshCourseBox();
@@ -85,11 +85,11 @@ namespace CourseDistributor
 
         }
 
-        void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            settings.Courses = JsonSerializer.Serialize(courses);
-            settings.Semesters = JsonSerializer.Serialize(semesters);
-            settings.Save();
+            _settings.Courses = JsonSerializer.Serialize(Courses);
+            _settings.Semesters = JsonSerializer.Serialize(Semesters);
+            _settings.Save();
         }
 
         private void addCourse_Click(object sender, EventArgs e)
@@ -99,32 +99,34 @@ namespace CourseDistributor
 
         private void courseBox_DoubleClick(object sender, EventArgs e)
         {
-            new AddEditCourseForm(this, (String) courseBox.SelectedItem).Show();
+            new AddEditCourseForm(this, (string) courseBox.SelectedItem).Show();
         }
 
         private void removeCourse_Click(object sender, EventArgs e)
         {
 
-            if(courseBox.SelectedItem != null)
+            if (courseBox.SelectedItem == null)
             {
-
-                String courseID = (String) courseBox.SelectedItem;
-
-                DialogResult res = MessageBox.Show("Are you sure you want to delete course " + courseID + "?", "Deletion Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                if (res == DialogResult.OK)
-                {
-                    courses.Remove(courseID);
-                    RefreshCourseBox();
-                }
-                
+                return;
             }
+
+            var courseId = (string)courseBox.SelectedItem;
+
+            var res = MessageBox.Show("Are you sure you want to delete course " + courseId + "?", "Deletion Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (res != DialogResult.OK)
+            {
+                return;
+            }
+
+            Courses.Remove(courseId);
+            RefreshCourseBox();
 
         }
 
         private void addSemester_Click(object sender, EventArgs e)
         {
-            new AddRenameSemesterForm(this, semesters.Count).Show();
+            new AddRenameSemesterForm(this, Semesters.Count).Show();
         }
 
         private void semesterBox_DoubleClick(object sender, EventArgs e)
@@ -135,14 +137,16 @@ namespace CourseDistributor
         private void removeSemester_Click(object sender, EventArgs e)
         {
 
-            string semesterName = semesters[semesterBox.SelectedIndex].semesterName;
-            DialogResult res = MessageBox.Show("Are you sure you want to delete semester " + semesterName + "?", "Deletion Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var semesterName = Semesters[semesterBox.SelectedIndex].semesterName;
+            var res = MessageBox.Show("Are you sure you want to delete semester " + semesterName + "?", "Deletion Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (res == DialogResult.OK)
+            if (res != DialogResult.OK)
             {
-                semesters.RemoveAt(semesterBox.SelectedIndex);
-                RefreshSemesterBox();
+                return;
             }
+
+            Semesters.RemoveAt(semesterBox.SelectedIndex);
+            RefreshSemesterBox();
 
         }
 
@@ -154,16 +158,15 @@ namespace CourseDistributor
                 return;
             }
 
-            int selectedIndex = semesterBox.SelectedIndex;
+            var selectedIndex = semesterBox.SelectedIndex;
 
             if ((selectedIndex - 1) == -1)
             {
                 return;
             }
 
-            Semester temp = semesters[selectedIndex];
-            semesters[selectedIndex] = semesters[selectedIndex - 1];
-            semesters[selectedIndex - 1] = temp;
+            (Semesters[selectedIndex], Semesters[selectedIndex - 1]) =
+                (Semesters[selectedIndex - 1], Semesters[selectedIndex]);
 
             RefreshSemesterBox();
 
@@ -177,16 +180,15 @@ namespace CourseDistributor
                 return;
             }
 
-            int selectedIndex = semesterBox.SelectedIndex;
+            var selectedIndex = semesterBox.SelectedIndex;
 
-            if ((selectedIndex + 1) == semesters.Count)
+            if ((selectedIndex + 1) == Semesters.Count)
             {
                 return;
             }
 
-            Semester temp = semesters[selectedIndex];
-            semesters[selectedIndex] = semesters[selectedIndex + 1];
-            semesters[selectedIndex + 1] = temp;
+            (Semesters[selectedIndex], Semesters[selectedIndex + 1]) =
+                (Semesters[selectedIndex + 1], Semesters[selectedIndex]);
 
             RefreshSemesterBox();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CourseDistributor
@@ -7,30 +8,30 @@ namespace CourseDistributor
     public partial class AddEditCourseForm : Form
     {
 
-        private MainForm mainForm;
-        private Dictionary<String, Course> courses;
-        private String selectedCourse;
+        private readonly MainForm _mainForm;
+        private readonly Dictionary<string, Course> _courses;
+        private readonly string _selectedCourse;
 
         public AddEditCourseForm(MainForm mainForm)
         {
             InitializeComponent();
-            this.mainForm = mainForm;
-            this.courses = mainForm.courses;
-            this.selectedCourse = null;
+            this._mainForm = mainForm;
+            this._courses = mainForm.Courses;
+            this._selectedCourse = null;
         }
 
         public AddEditCourseForm(MainForm mainForm, string selectedCourse)
         {
 
             InitializeComponent();
-            this.mainForm = mainForm;
-            this.courses = mainForm.courses;
-            this.selectedCourse = selectedCourse;
+            this._mainForm = mainForm;
+            this._courses = mainForm.Courses;
+            this._selectedCourse = selectedCourse;
         }
 
-        private void InitializeFieldsFromCourseID(string targetCourseID) {
+        private void InitializeFieldsFromCourseId(string targetCourseId) {
 
-            courses.TryGetValue(targetCourseID, out Course course);
+            _courses.TryGetValue(targetCourseId, out var course);
 
             if (course == null)
             {
@@ -43,19 +44,21 @@ namespace CourseDistributor
 
             switch (course.semestersOffered)
             {
-                case SemestersOffered.SPRING:
+                case SemestersOffered.Spring:
                     springCheckBox.Checked = true; break;
-                case SemestersOffered.FALL:
+                case SemestersOffered.Fall:
                     fallCheckBox.Checked = true; break;
-                case SemestersOffered.BOTH:
+                case SemestersOffered.Both:
                     springCheckBox.Checked = true;
                     fallCheckBox.Checked = true;
+                    break;
+                default:
                     break;
             }
 
             prereqListBox.Items.Remove(course.courseId);
 
-            for (int i = 0; i < prereqListBox.Items.Count; i++)
+            for (var i = 0; i < prereqListBox.Items.Count; i++)
             {
 
                 if (course.prerequisites.Contains((string) prereqListBox.Items[i]))
@@ -70,15 +73,15 @@ namespace CourseDistributor
         private void AddEditCourseForm_Load(object sender, EventArgs e)
         {
 
-            foreach (KeyValuePair<String, Course> course in courses) {
+            foreach (KeyValuePair<string, Course> course in _courses) {
                 prereqListBox.Items.Add(course.Key);
             }
 
-            if (selectedCourse != null)
+            if (_selectedCourse != null)
             {
                 this.Text = "Edit Course";
                 submitButton.Text = "Edit";
-                InitializeFieldsFromCourseID(selectedCourse);
+                InitializeFieldsFromCourseId(_selectedCourse);
             } else
             {
                 this.Text = "Add New Course";
@@ -94,26 +97,24 @@ namespace CourseDistributor
 
             if(!creditHoursTextIsNumeric)
             {
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show("Credit hours field must be an integer!", "Invalid Input", buttons, MessageBoxIcon.Error);
+                MessageBox.Show("Credit hours field must be an integer!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if(!fallCheckBox.Checked && !springCheckBox.Checked)
             {
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show("Course must be available in either fall or spring!", "Invalid Input", buttons, MessageBoxIcon.Error);
+                MessageBox.Show("Course must be available in either fall or spring!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if(courses.ContainsKey(courseID.Text))
+            if(_courses.ContainsKey(courseID.Text))
             {
-                courses.Remove(courseID.Text);
+                _courses.Remove(courseID.Text);
             }
 
-            courses.Add(courseID.Text, GetCourseFromUI());
+            _courses.Add(courseID.Text, GetCourseFromUI());
 
-            mainForm.RefreshCourseBox();
+            _mainForm.RefreshCourseBox();
 
             this.Close();
 
@@ -122,16 +123,10 @@ namespace CourseDistributor
         private Course GetCourseFromUI()
         {
 
-            List<String> prerequisites = new List<String>();
+            var prerequisites = new List<string>();
+            prerequisites.AddRange(prereqListBox.CheckedItems.Cast<string>());
 
-            foreach (String prereqID in prereqListBox.CheckedItems)
-            {
-
-                prerequisites.Add(prereqID);
-
-            }
-
-            Course course = new Course(
+            var course = new Course(
                 courseID.Text,
                 courseName.Text,
                 int.Parse(creditHours.Text),
@@ -144,22 +139,24 @@ namespace CourseDistributor
 
         private SemestersOffered SemestersOfferedFromUI(bool fall, bool spring)
         {
+            
             if (fall && spring)
             {
-                return SemestersOffered.BOTH;
+                return SemestersOffered.Both;
             }
             else if (fall)
             {
-                return SemestersOffered.FALL;
+                return SemestersOffered.Fall;
             }
             else if (spring)
             {
-                return SemestersOffered.SPRING;
+                return SemestersOffered.Spring;
             }
             else
             {
                 throw new ArgumentException("At least one of the booleans must be true");
             }
+
         }
 
     }

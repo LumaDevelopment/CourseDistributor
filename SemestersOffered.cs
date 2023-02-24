@@ -2,9 +2,9 @@
 {
     public enum SemestersOffered
     {
-        FALL,
-        SPRING,
-        BOTH
+        Fall,
+        Spring,
+        Both
     }
 
 }
