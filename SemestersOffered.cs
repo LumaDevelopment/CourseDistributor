@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseDistributor
 {
-    internal enum SemestersOffered
+    public enum SemestersOffered
     {
         FALL,
         SPRING,

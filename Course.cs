@@ -1,17 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
+using System.Json;
 
 namespace CourseDistributor
 {
-    internal class Course
+
+    public class Course
     {
 
-        public string courseId;
-        public string courseName;
-        public int creditHours;
-        public SemestersOffered semestersOffered;
-        public List<Course> prerequisites;
+        public string courseId { get; set; }
+        public string courseName { get; set; }
+        public int creditHours { get; set; }
+        public SemestersOffered semestersOffered { get; set; }
+        public List<String> prerequisites { get; set; }
 
-        public Course(string courseId, string courseName, int creditHours, SemestersOffered semestersOffered, List<Course> prerequisites)
+        public Course(string courseId, string courseName, int creditHours, SemestersOffered semestersOffered, List<String> prerequisites)
         {
             this.courseId = courseId;
             this.courseName = courseName;

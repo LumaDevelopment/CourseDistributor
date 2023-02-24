@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CourseDistributor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Luma Development")]
 [assembly: AssemblyProduct("CourseDistributor")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCopyright("Copyright © 2023 Luma Development")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
