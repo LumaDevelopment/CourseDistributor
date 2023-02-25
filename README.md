@@ -13,6 +13,9 @@ So, I decided to make one. My normal approach to this problem would be to grab a
 	- The number of prerequisites a course has
 	- etc.
 
+## Restrictions
+CourseDistributor works by putting as many courses as it can into the first semester, then as many courses as it can into the second semester, so on and so forth until all courses are scheduled or there are no more available course placements. Due to the way courses are sorted, most of the time this results in CourseDistributor making good course lists that place all courses, even with complex prerequisite webs. However, because the scheduling is not particularly adaptive, this means that sometimes CourseDistributor will sometimes tell you that it can't place all the courses provided, even when it's technically possible.
+
 ## Gallery
 <img src="img/mainForm.png" width="85%">
 <img src="img/addEditCourseForm.png" width="40%">
