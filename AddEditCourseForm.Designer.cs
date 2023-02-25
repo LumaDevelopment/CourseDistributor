@@ -45,7 +45,7 @@
             // 
             // submitButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(158, 357);
+            this.submitButton.Location = new System.Drawing.Point(162, 417);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(75, 23);
             this.submitButton.TabIndex = 0;
@@ -56,17 +56,17 @@
             // formLabel
             // 
             this.formLabel.AutoSize = true;
-            this.formLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formLabel.Location = new System.Drawing.Point(126, 23);
+            this.formLabel.Font = new System.Drawing.Font("Open Sans Semibold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formLabel.Location = new System.Drawing.Point(120, 20);
             this.formLabel.Name = "formLabel";
-            this.formLabel.Size = new System.Drawing.Size(148, 24);
+            this.formLabel.Size = new System.Drawing.Size(160, 26);
             this.formLabel.TabIndex = 1;
             this.formLabel.Text = "Add/Edit Course";
             // 
             // courseIDLabel
             // 
             this.courseIDLabel.AutoSize = true;
-            this.courseIDLabel.Location = new System.Drawing.Point(43, 70);
+            this.courseIDLabel.Location = new System.Drawing.Point(92, 66);
             this.courseIDLabel.Name = "courseIDLabel";
             this.courseIDLabel.Size = new System.Drawing.Size(57, 13);
             this.courseIDLabel.TabIndex = 2;
@@ -74,22 +74,22 @@
             // 
             // courseID
             // 
-            this.courseID.Location = new System.Drawing.Point(158, 67);
+            this.courseID.Location = new System.Drawing.Point(95, 82);
             this.courseID.Name = "courseID";
             this.courseID.Size = new System.Drawing.Size(100, 20);
             this.courseID.TabIndex = 3;
             // 
             // courseName
             // 
-            this.courseName.Location = new System.Drawing.Point(158, 113);
+            this.courseName.Location = new System.Drawing.Point(95, 138);
             this.courseName.Name = "courseName";
-            this.courseName.Size = new System.Drawing.Size(189, 20);
+            this.courseName.Size = new System.Drawing.Size(210, 20);
             this.courseName.TabIndex = 4;
             // 
             // courseNameLabel
             // 
             this.courseNameLabel.AutoSize = true;
-            this.courseNameLabel.Location = new System.Drawing.Point(43, 116);
+            this.courseNameLabel.Location = new System.Drawing.Point(92, 122);
             this.courseNameLabel.Name = "courseNameLabel";
             this.courseNameLabel.Size = new System.Drawing.Size(74, 13);
             this.courseNameLabel.TabIndex = 5;
@@ -98,7 +98,7 @@
             // creditHoursLabel
             // 
             this.creditHoursLabel.AutoSize = true;
-            this.creditHoursLabel.Location = new System.Drawing.Point(43, 156);
+            this.creditHoursLabel.Location = new System.Drawing.Point(92, 178);
             this.creditHoursLabel.Name = "creditHoursLabel";
             this.creditHoursLabel.Size = new System.Drawing.Size(68, 13);
             this.creditHoursLabel.TabIndex = 6;
@@ -106,7 +106,7 @@
             // 
             // creditHours
             // 
-            this.creditHours.Location = new System.Drawing.Point(158, 153);
+            this.creditHours.Location = new System.Drawing.Point(95, 194);
             this.creditHours.MaxLength = 1;
             this.creditHours.Name = "creditHours";
             this.creditHours.Size = new System.Drawing.Size(38, 20);
@@ -115,7 +115,7 @@
             // semestersOfferedLabel
             // 
             this.semestersOfferedLabel.AutoSize = true;
-            this.semestersOfferedLabel.Location = new System.Drawing.Point(43, 197);
+            this.semestersOfferedLabel.Location = new System.Drawing.Point(92, 234);
             this.semestersOfferedLabel.Name = "semestersOfferedLabel";
             this.semestersOfferedLabel.Size = new System.Drawing.Size(97, 13);
             this.semestersOfferedLabel.TabIndex = 8;
@@ -124,7 +124,7 @@
             // fallCheckBox
             // 
             this.fallCheckBox.AutoSize = true;
-            this.fallCheckBox.Location = new System.Drawing.Point(158, 196);
+            this.fallCheckBox.Location = new System.Drawing.Point(95, 250);
             this.fallCheckBox.Name = "fallCheckBox";
             this.fallCheckBox.Size = new System.Drawing.Size(42, 17);
             this.fallCheckBox.TabIndex = 9;
@@ -134,7 +134,7 @@
             // springCheckBox
             // 
             this.springCheckBox.AutoSize = true;
-            this.springCheckBox.Location = new System.Drawing.Point(206, 197);
+            this.springCheckBox.Location = new System.Drawing.Point(143, 250);
             this.springCheckBox.Name = "springCheckBox";
             this.springCheckBox.Size = new System.Drawing.Size(56, 17);
             this.springCheckBox.TabIndex = 10;
@@ -144,15 +144,15 @@
             // prereqListBox
             // 
             this.prereqListBox.FormattingEnabled = true;
-            this.prereqListBox.Location = new System.Drawing.Point(158, 240);
+            this.prereqListBox.Location = new System.Drawing.Point(95, 303);
             this.prereqListBox.Name = "prereqListBox";
-            this.prereqListBox.Size = new System.Drawing.Size(189, 94);
+            this.prereqListBox.Size = new System.Drawing.Size(210, 94);
             this.prereqListBox.TabIndex = 11;
             // 
             // prereqLabel
             // 
             this.prereqLabel.AutoSize = true;
-            this.prereqLabel.Location = new System.Drawing.Point(43, 240);
+            this.prereqLabel.Location = new System.Drawing.Point(92, 287);
             this.prereqLabel.Name = "prereqLabel";
             this.prereqLabel.Size = new System.Drawing.Size(70, 13);
             this.prereqLabel.TabIndex = 12;
@@ -162,7 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 411);
+            this.ClientSize = new System.Drawing.Size(384, 464);
             this.Controls.Add(this.prereqLabel);
             this.Controls.Add(this.prereqListBox);
             this.Controls.Add(this.springCheckBox);

@@ -39,32 +39,33 @@
             // formLabel
             // 
             this.formLabel.AutoSize = true;
-            this.formLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formLabel.Location = new System.Drawing.Point(102, 22);
+            this.formLabel.Font = new System.Drawing.Font("Open Sans Semibold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formLabel.Location = new System.Drawing.Point(102, 20);
             this.formLabel.Name = "formLabel";
-            this.formLabel.Size = new System.Drawing.Size(167, 24);
+            this.formLabel.Size = new System.Drawing.Size(181, 26);
             this.formLabel.TabIndex = 2;
             this.formLabel.Text = "Add/Edit Semester";
             // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(55, 72);
+            this.nameLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Location = new System.Drawing.Point(124, 66);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(38, 13);
+            this.nameLabel.Size = new System.Drawing.Size(40, 15);
             this.nameLabel.TabIndex = 3;
             this.nameLabel.Text = "Name:";
             // 
             // semesterName
             // 
-            this.semesterName.Location = new System.Drawing.Point(181, 69);
+            this.semesterName.Location = new System.Drawing.Point(127, 84);
             this.semesterName.Name = "semesterName";
             this.semesterName.Size = new System.Drawing.Size(130, 20);
             this.semesterName.TabIndex = 4;
             // 
             // submitButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(141, 149);
+            this.submitButton.Location = new System.Drawing.Point(155, 182);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(75, 23);
             this.submitButton.TabIndex = 5;
@@ -75,25 +76,26 @@
             // maximumCreditHoursLabel
             // 
             this.maximumCreditHoursLabel.AutoSize = true;
-            this.maximumCreditHoursLabel.Location = new System.Drawing.Point(55, 109);
+            this.maximumCreditHoursLabel.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maximumCreditHoursLabel.Location = new System.Drawing.Point(124, 124);
             this.maximumCreditHoursLabel.Name = "maximumCreditHoursLabel";
-            this.maximumCreditHoursLabel.Size = new System.Drawing.Size(115, 13);
+            this.maximumCreditHoursLabel.Size = new System.Drawing.Size(100, 15);
             this.maximumCreditHoursLabel.TabIndex = 7;
-            this.maximumCreditHoursLabel.Text = "Maximum Credit Hours:";
+            this.maximumCreditHoursLabel.Text = "Max Credit Hours:";
             // 
             // maxCreditHours
             // 
-            this.maxCreditHours.Location = new System.Drawing.Point(181, 106);
+            this.maxCreditHours.Location = new System.Drawing.Point(127, 142);
             this.maxCreditHours.MaxLength = 2;
             this.maxCreditHours.Name = "maxCreditHours";
-            this.maxCreditHours.Size = new System.Drawing.Size(44, 20);
+            this.maxCreditHours.Size = new System.Drawing.Size(130, 20);
             this.maxCreditHours.TabIndex = 9;
             // 
             // AddEditSemesterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 201);
+            this.ClientSize = new System.Drawing.Size(368, 227);
             this.Controls.Add(this.maxCreditHours);
             this.Controls.Add(this.maximumCreditHoursLabel);
             this.Controls.Add(this.submitButton);
