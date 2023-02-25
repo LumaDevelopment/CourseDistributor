@@ -97,7 +97,16 @@ namespace CourseDistributor
                     // go to next course and try to schedule it.
                     if (semesterToScheduleTo == null)
                     {
+
+                        // If we can't schedule any more courses, we're done.
+                        if (NoMoreValidCoursePlacements())
+                        {
+                            UpdateUI();
+                            return;
+                        }
+
                         break;
+
                     }
 
                     var alreadyScheduledCopy = new List<string>(_alreadyScheduled);
@@ -134,6 +143,15 @@ namespace CourseDistributor
 
             // We've scheduled as many courses as we can, now 
             // we need to update the UI with the information
+            UpdateUI();
+
+        }
+
+        /**
+         * Update UI with the course distribution information.
+         */
+        private void UpdateUI()
+        {
             _courseDistributionTreeView.BeginUpdate();
             _courseDistributionTreeView.Nodes.Clear();
 
@@ -159,12 +177,16 @@ namespace CourseDistributor
             // If we weren't able to schedule every course, let the user know
             if (_notScheduled.Count > 0)
             {
-                MessageBox.Show("Was not able to schedule " + _notScheduled.Count + " courses!", "Some Courses Not Scheduled", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Was not able to schedule these courses: " + GetCleanListOfAvailableCourseIDs() + "\n" +
+                                "Total course credit hours: " + GetSumOfAllCourseCreditHours() + "\n" +
+                                "Max credit hour capacity: " + GetMaxCreditHourCapacity(),
+                    "Some Courses Not Scheduled",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             // Update the UI
             _courseDistributionTreeView.EndUpdate();
-
         }
 
         /**
@@ -217,6 +239,119 @@ namespace CourseDistributor
             }
 
             return creditHours;
+        }
+
+        /**
+         * Check if there are no more valid course placements by checking if
+         * the lowest credit hours of any available course is too much for any
+         * semester to schedule.
+         */
+        private bool NoMoreValidCoursePlacements()
+        {
+
+            var lowestCreditHoursOfAvailableCourse = GetLowestCreditHoursOfAvailableCourse();
+
+            foreach (var semester in _semesters)
+            {
+
+                // If the lowest credit hours of a course was added to this semester's current credit hours
+                var hypotheticalCreditHours = lowestCreditHoursOfAvailableCourse + GetSemesterCreditHours(semester);
+
+                // Would that sum exceed the semester's max credit hours?
+                if (hypotheticalCreditHours <= semester.maxCreditHours)
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+
+        }
+
+        /**
+         * Get the lowest amount of credit hours any available course has.
+         */
+        private int GetLowestCreditHoursOfAvailableCourse()
+        {
+
+            var lowestCreditHours = int.MaxValue;
+
+            foreach (var course in _notScheduled)
+            {
+
+                var creditHours = course.creditHours;
+
+                if (creditHours < lowestCreditHours)
+                {
+                    lowestCreditHours = creditHours;
+                }
+
+            }
+
+            return lowestCreditHours;
+
+        }
+
+        /**
+         * Get the number of credit hours if you add together the
+         * credit hours of all courses.
+         */
+        private int GetSumOfAllCourseCreditHours()
+        {
+
+            var creditHours = 0;
+
+            foreach (var course in _courses.Values)
+            {
+                creditHours += course.creditHours;
+            }
+
+            return creditHours;
+
+        }
+
+        /**
+         * Get the number of credit hours if you add together the
+         * max number of credit hours across all semesters.
+         */
+        private int GetMaxCreditHourCapacity()
+        {
+
+            var creditHours = 0;
+
+            foreach (var semester in _semesters)
+            {
+                creditHours += semester.maxCreditHours;
+            }
+
+            return creditHours;
+
+        }
+
+        /**
+         * Get a formatted list of available course IDs.
+         * Given course IDs x, y, and z: "x, y, z"
+         */
+        private string GetCleanListOfAvailableCourseIDs()
+        {
+
+            var output = "";
+
+            for (var i = 0; i < _notScheduled.Count; i++)
+            {
+
+                output += _notScheduled[i].courseId;
+
+                if (i != _notScheduled.Count - 1)
+                {
+                    output += ", ";
+                }
+
+            }
+
+            return output;
+
         }
 
     }
