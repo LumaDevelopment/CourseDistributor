@@ -80,7 +80,7 @@ namespace CourseDistributor
                     // Find a semester that can fit ithis course
                     Semester semesterToScheduleTo = null;
 
-                    for (int j = 0; j < _semesters.Count; j++)
+                    for (var j = 0; j < _semesters.Count; j++)
                     {
 
                         // If this course's credit hours + the semester's already scheduled credit hours are less than 
@@ -125,6 +125,13 @@ namespace CourseDistributor
                     // If we can't schedule this course, continue to the next course
                     if (!_notScheduled[i].CanBeScheduled(alreadyScheduledCopy, semesterToScheduleTo))
                     {
+
+                        if (NoMoreValidCoursePlacements())
+                        {
+                            UpdateUI();
+                            return;
+                        }
+
                         continue;
                     }
 
@@ -133,7 +140,7 @@ namespace CourseDistributor
                     _notScheduled.RemoveAt(i);
                     ScheduleCourse(semesterToScheduleTo, courseId);
 
-                    Console.WriteLine("Schedule course #" + _alreadyScheduled.Count + " (" + _courses[courseId].ToString() + ") to semester " + semesterToScheduleTo.semesterName);
+                    Console.WriteLine("Scheduled course #" + _alreadyScheduled.Count + " (" + _courses[courseId].ToString() + ") to semester " + semesterToScheduleTo.semesterName);
 
                     break;
 
