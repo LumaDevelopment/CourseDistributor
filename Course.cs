@@ -35,26 +35,6 @@ namespace CourseDistributor
             return courseName + " (" + courseId + ")";
         }
 
-        /*
-        public int DepthOfDependents(Dictionary<string, Course> courses, bool origin)
-        {
-            var maxDepth = 0;
-
-            foreach (var dependencyId in dependents)
-            {
-                var depth = courses[dependencyId].DepthOfDependents(courses, false);
-
-                if (depth > maxDepth) maxDepth = depth;
-            }
-
-            if (!origin)
-            {
-                maxDepth++;
-            }
-
-            return maxDepth;
-        }
-        */
 
         public int TotalDependents(Dictionary<string, Course> courses, bool origin)
         {
