@@ -2,6 +2,10 @@
 
 namespace CourseDistributor
 {
+
+    /**
+     * Establishes the ability to save our courses and semesters to application settings.
+     */
     internal class UserSettings : ApplicationSettingsBase
     {
 

@@ -80,11 +80,11 @@
     <Compile Include="AddEditCourseForm.Designer.cs">
       <DependentUpon>AddEditCourseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddRenameSemesterForm.cs">
+    <Compile Include="AddEditSemesterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddRenameSemesterForm.Designer.cs">
-      <DependentUpon>AddRenameSemesterForm.cs</DependentUpon>
+    <Compile Include="AddEditSemesterForm.Designer.cs">
+      <DependentUpon>AddEditSemesterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Distributor.cs" />
     <Compile Include="Semester.cs" />
@@ -102,8 +102,8 @@
     <EmbeddedResource Include="AddEditCourseForm.resx">
       <DependentUpon>AddEditCourseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddRenameSemesterForm.resx">
-      <DependentUpon>AddRenameSemesterForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddEditSemesterForm.resx">
+      <DependentUpon>AddEditSemesterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

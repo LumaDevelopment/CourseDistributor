@@ -79,7 +79,7 @@
             this.courseBox.FormattingEnabled = true;
             this.courseBox.Location = new System.Drawing.Point(17, 123);
             this.courseBox.Name = "courseBox";
-            this.courseBox.Size = new System.Drawing.Size(183, 381);
+            this.courseBox.Size = new System.Drawing.Size(183, 446);
             this.courseBox.TabIndex = 3;
             this.courseBox.DoubleClick += new System.EventHandler(this.courseBox_DoubleClick);
             // 
@@ -128,13 +128,13 @@
             this.semesterBox.FormattingEnabled = true;
             this.semesterBox.Location = new System.Drawing.Point(241, 123);
             this.semesterBox.Name = "semesterBox";
-            this.semesterBox.Size = new System.Drawing.Size(202, 355);
+            this.semesterBox.Size = new System.Drawing.Size(202, 420);
             this.semesterBox.TabIndex = 8;
             this.semesterBox.DoubleClick += new System.EventHandler(this.semesterBox_DoubleClick);
             // 
             // moveSemesterUp
             // 
-            this.moveSemesterUp.Location = new System.Drawing.Point(241, 484);
+            this.moveSemesterUp.Location = new System.Drawing.Point(241, 549);
             this.moveSemesterUp.Name = "moveSemesterUp";
             this.moveSemesterUp.Size = new System.Drawing.Size(98, 23);
             this.moveSemesterUp.TabIndex = 9;
@@ -144,7 +144,7 @@
             // 
             // moveSemesterDown
             // 
-            this.moveSemesterDown.Location = new System.Drawing.Point(345, 484);
+            this.moveSemesterDown.Location = new System.Drawing.Point(345, 549);
             this.moveSemesterDown.Name = "moveSemesterDown";
             this.moveSemesterDown.Size = new System.Drawing.Size(98, 23);
             this.moveSemesterDown.TabIndex = 10;
@@ -166,7 +166,7 @@
             // 
             this.distributeCourses.Location = new System.Drawing.Point(484, 65);
             this.distributeCourses.Name = "distributeCourses";
-            this.distributeCourses.Size = new System.Drawing.Size(222, 23);
+            this.distributeCourses.Size = new System.Drawing.Size(373, 23);
             this.distributeCourses.TabIndex = 12;
             this.distributeCourses.Text = "Distribute Courses";
             this.distributeCourses.UseVisualStyleBackColor = true;
@@ -176,14 +176,14 @@
             // 
             this.courseDistribution.Location = new System.Drawing.Point(484, 94);
             this.courseDistribution.Name = "courseDistribution";
-            this.courseDistribution.Size = new System.Drawing.Size(222, 410);
+            this.courseDistribution.Size = new System.Drawing.Size(373, 478);
             this.courseDistribution.TabIndex = 13;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 523);
+            this.ClientSize = new System.Drawing.Size(876, 595);
             this.Controls.Add(this.courseDistribution);
             this.Controls.Add(this.distributeCourses);
             this.Controls.Add(this.courseDistributionLabel);
