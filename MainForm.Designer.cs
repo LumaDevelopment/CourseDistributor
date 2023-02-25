@@ -39,6 +39,9 @@
             this.semesterBox = new System.Windows.Forms.ListBox();
             this.moveSemesterUp = new System.Windows.Forms.Button();
             this.moveSemesterDown = new System.Windows.Forms.Button();
+            this.courseDistributionLabel = new System.Windows.Forms.Label();
+            this.distributeCourses = new System.Windows.Forms.Button();
+            this.courseDistribution = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // addCourse
@@ -149,11 +152,41 @@
             this.moveSemesterDown.UseVisualStyleBackColor = true;
             this.moveSemesterDown.Click += new System.EventHandler(this.moveSemesterDown_Click);
             // 
+            // courseDistributionLabel
+            // 
+            this.courseDistributionLabel.AutoSize = true;
+            this.courseDistributionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.courseDistributionLabel.Location = new System.Drawing.Point(480, 38);
+            this.courseDistributionLabel.Name = "courseDistributionLabel";
+            this.courseDistributionLabel.Size = new System.Drawing.Size(168, 24);
+            this.courseDistributionLabel.TabIndex = 11;
+            this.courseDistributionLabel.Text = "Course Distribution";
+            // 
+            // distributeCourses
+            // 
+            this.distributeCourses.Location = new System.Drawing.Point(484, 65);
+            this.distributeCourses.Name = "distributeCourses";
+            this.distributeCourses.Size = new System.Drawing.Size(222, 23);
+            this.distributeCourses.TabIndex = 12;
+            this.distributeCourses.Text = "Distribute Courses";
+            this.distributeCourses.UseVisualStyleBackColor = true;
+            this.distributeCourses.Click += new System.EventHandler(this.distributeCourses_Click);
+            // 
+            // courseDistribution
+            // 
+            this.courseDistribution.Location = new System.Drawing.Point(484, 94);
+            this.courseDistribution.Name = "courseDistribution";
+            this.courseDistribution.Size = new System.Drawing.Size(222, 410);
+            this.courseDistribution.TabIndex = 13;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 523);
+            this.ClientSize = new System.Drawing.Size(735, 523);
+            this.Controls.Add(this.courseDistribution);
+            this.Controls.Add(this.distributeCourses);
+            this.Controls.Add(this.courseDistributionLabel);
             this.Controls.Add(this.moveSemesterDown);
             this.Controls.Add(this.moveSemesterUp);
             this.Controls.Add(this.semesterBox);
@@ -187,6 +220,9 @@
         private System.Windows.Forms.ListBox semesterBox;
         private System.Windows.Forms.Button moveSemesterUp;
         private System.Windows.Forms.Button moveSemesterDown;
+        private System.Windows.Forms.Label courseDistributionLabel;
+        private System.Windows.Forms.Button distributeCourses;
+        private System.Windows.Forms.TreeView courseDistribution;
     }
 }
 

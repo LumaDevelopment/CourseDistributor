@@ -107,12 +107,29 @@ namespace CourseDistributor
                 return;
             }
 
-            if(_courses.ContainsKey(courseID.Text))
+
+            if (_selectedCourse != null)
             {
-                _courses.Remove(courseID.Text);
+                _mainForm.RemoveCourse(_selectedCourse);
             }
 
-            _courses.Add(courseID.Text, GetCourseFromUI());
+            _mainForm.RemoveCourse(courseID.Text);
+
+            var courseToAdd = GetCourseFromUI();
+
+            _courses.Add(courseID.Text, courseToAdd);
+
+            foreach (var dependency in courseToAdd.prerequisites)
+            {
+                _courses.TryGetValue(dependency, out var dependencyCourse);
+
+                if (dependencyCourse == null)
+                {
+                    continue;
+                }
+
+                dependencyCourse.dependents.Add(courseID.Text);
+            }
 
             _mainForm.RefreshCourseBox();
 
@@ -131,7 +148,8 @@ namespace CourseDistributor
                 courseName.Text,
                 int.Parse(creditHours.Text),
                 SemestersOfferedFromUI(fallCheckBox.Checked, springCheckBox.Checked),
-                prerequisites);
+                prerequisites,
+                new List<string>());
 
             return course;
 

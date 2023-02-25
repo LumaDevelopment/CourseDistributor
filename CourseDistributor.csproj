@@ -86,6 +86,7 @@
     <Compile Include="AddRenameSemesterForm.Designer.cs">
       <DependentUpon>AddRenameSemesterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Distributor.cs" />
     <Compile Include="Semester.cs" />
     <Compile Include="SemestersOffered.cs" />
     <Compile Include="Course.cs" />

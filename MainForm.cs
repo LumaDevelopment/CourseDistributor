@@ -87,9 +87,11 @@ namespace CourseDistributor
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             _settings.Courses = JsonSerializer.Serialize(Courses);
             _settings.Semesters = JsonSerializer.Serialize(Semesters);
             _settings.Save();
+
         }
 
         private void addCourse_Click(object sender, EventArgs e)
@@ -119,8 +121,36 @@ namespace CourseDistributor
                 return;
             }
 
-            Courses.Remove(courseId);
+            RemoveCourse(courseId);
             RefreshCourseBox();
+
+        }
+
+        public void RemoveCourse(string courseId)
+        {
+
+            Courses.TryGetValue(courseId, out var course);
+
+            if (course == null)
+            {
+                return;
+            }
+
+            foreach (var prereqId in course.prerequisites)
+            {
+
+                Courses.TryGetValue(prereqId, out var prereqCourse);
+
+                if (prereqCourse == null)
+                {
+                    continue;
+                }
+
+                prereqCourse.dependents.Remove(courseId);
+
+            }
+
+            Courses.Remove(courseId);
 
         }
 
@@ -192,6 +222,11 @@ namespace CourseDistributor
 
             RefreshSemesterBox();
 
+        }
+
+        private void distributeCourses_Click(object sender, EventArgs e)
+        {
+            new Distributor(Courses, Semesters, courseDistribution).Run();
         }
     }
 }
