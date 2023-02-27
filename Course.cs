@@ -82,7 +82,7 @@ namespace CourseDistributor
                 return false;
             }
 
-            if (semesterName.Equals("Spring") && !semestersOffered.Equals(SemestersOffered.Spring) &&
+            if (semesterName.Contains("Spring") && !semestersOffered.Equals(SemestersOffered.Spring) &&
                 !semestersOffered.Equals(SemestersOffered.Both))
             {
                 return false;
