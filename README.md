@@ -16,6 +16,13 @@ So, I decided to make one. My normal approach to this problem would be to grab a
 ## Restrictions
 CourseDistributor works by putting as many courses as it can into the first semester, then as many courses as it can into the second semester, so on and so forth until all courses are scheduled or there are no more available course placements. Due to the way courses are sorted, most of the time this results in CourseDistributor making good course lists that place all courses, even with complex prerequisite webs. However, because the scheduling is not particularly adaptive, this means that sometimes CourseDistributor will tell you that it can't place all the courses provided, even when it's technically possible.
 
+**TODO:** New placement algorithm:
+
+1. Use a topological sort to place courses based on prerequisites
+2. Do round robin placement of courses in semesters (most credit hours first)
+3. Use average number of credit hours per course, knowledge of courses with less credit hours, or some other metric to squeeze in irregular courses into semesters for maximum placement.
+4. If above three steps don't work, possibly swap to some sort of more expensive permutation-based algorithm after executing step 1.
+
 ## Gallery
 <img src="img/mainForm.png" width="85%">
 <img src="img/addEditCourseForm.png" width="40%">
